@@ -21,17 +21,17 @@ if __name__ == "__main__":
             normal.append(solve_quadratic(coeffs=coeffs, x=xvalue)[1])
             efficient.append(efficient_solve_quadratic(coeffs=coeffs, x=xvalue)[1])
             horners.append(horners_method(coeffs=coeffs, x=xvalue)[1])
-        normalmethod[degree] = (sum(normal)/len(normal)) #/degree
-        efficientmethod[degree] = (sum(efficient)/len(efficient)) #/degree
+        normalmethod[degree] = sum(normal)/len(normal)
+        efficientmethod[degree] = sum(efficient)/len(efficient)
         hornersmethod[degree] = sum(horners)/len(horners)
 
-    print(normalmethod)
+    print("Normal Method:", normalmethod)
 
     print("======================================")
     
-    print(efficientmethod)
+    print("Efficient Method:", efficientmethod)
 
     print("======================================")
 
-    print(hornersmethod)
+    print("Horner's Method:", hornersmethod)
     
