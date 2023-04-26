@@ -1,5 +1,5 @@
 
-def solve_quadratic(*coeffs, x):
+def solve_quadratic(coeffs, x):
     coefficients = coeffs
     value = 0.0
     for idx in range(0, len(coefficients)):
@@ -21,7 +21,7 @@ def pow(x,y):
             else:
                 return (pow(x, y//2) * pow(x, y//2))/x
 
-def efficient_solve_quadratic(*coeffs, x):
+def efficient_solve_quadratic(coeffs, x):
     coefficients = coeffs
     value = 0.0
     for idx in range(0, len(coefficients)):
@@ -30,11 +30,13 @@ def efficient_solve_quadratic(*coeffs, x):
     return value
 
 if __name__ == "__main__":
-    print("Enter the co-efficients of a quadratic equation: ")
-    a = float(input("Enter coefficient of x^2: "))
-    b = float(input("Enter the coefficient of x: "))
-    c = float(input("Enter the constant value: "))
+    degree = int(input("Enter the degree of the polynomial equation:"))
+    coeffs = []
+    print("Enter the co-efficients of the polynomial equation: ")
+    for i in range(degree, -1, -1):
+        c = float(input("Enter the coefficient of x^%d: " % i))
+        coeffs.append(c)
     x = float(input("Enter the value of the variable: "))
-    print("1. Solved value is:", solve_quadratic(a,b,c, x = x))
-    print("2. Efficiently Solved value is:", efficient_solve_quadratic(a,b,c, x = x))
+    print("1. Solved value is:", solve_quadratic(coeffs, x = x))
+    print("2. Efficiently Solved value is:", efficient_solve_quadratic(coeffs, x = x))
     
