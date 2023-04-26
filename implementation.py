@@ -68,4 +68,3 @@ if __name__ == "__main__":
     x = float(input("Enter the value of the variable: "))
     print("1. Solved value is:", solve_quadratic(coeffs, x = x))
     print("2. Efficiently Solved value is:", efficient_solve_quadratic(coeffs, x = x))
-    
