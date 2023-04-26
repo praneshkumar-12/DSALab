@@ -13,7 +13,7 @@ def solve_quadratic(coeffs, x):
             count += 1
         value += temp
         count += 1
-    return value, count      
+    return value, count
 
 def pow(x,y):
     global count
