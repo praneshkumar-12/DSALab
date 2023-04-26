@@ -1,33 +1,62 @@
-
+count = 0
 def solve_quadratic(coeffs, x):
+    count = 0
     coefficients = coeffs
-    value = 0.0
+    count += 1
+    value = 0
+    count += 1
     for idx in range(0, len(coefficients)):
         temp = coefficients[idx]
+        count += 1
         for i in range(len(coefficients) - (idx + 1)):
             temp *= x
-        value = value + temp
-    return value      
+            count += 1
+        value += temp
+        count += 1
+    return value, count      
 
 def pow(x,y):
+    global count
+    count += 1
     if y == 0:
         return 1
     else:
         if y % 2 == 0:
-            return pow(x, y//2) * pow(x, y//2)
+            temp = pow(x, y//2)
+            return temp * temp
         else:
             if y > 0:
-                return x * pow(x, y//2) * pow(x, y//2)
+                temp = pow(x, y//2)
+                return x * temp * temp
             else:
-                return (pow(x, y//2) * pow(x, y//2))/x
+                temp = pow(x, y//2)
+                return (temp * temp)/x
 
 def efficient_solve_quadratic(coeffs, x):
+    global count
+    count = 0
     coefficients = coeffs
+    count += 1
     value = 0.0
+    count += 1
     for idx in range(0, len(coefficients)):
+        count += 1
         temp = coefficients[idx] * pow(x, len(coefficients) - (idx + 1))
+        count += 1
         value += temp
-    return value
+        count += 1
+
+    return value, count
+
+def horners_method(coeffs, x):
+    global count 
+    count = 0
+    sum = coeffs[0]
+    count += 1
+    for idx in range(1, len(coeffs)):
+        sum = sum * x + coeffs[idx]
+        count += 1
+    return sum ,count
 
 if __name__ == "__main__":
     degree = int(input("Enter the degree of the polynomial equation:"))
