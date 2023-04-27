@@ -28,9 +28,7 @@ def pow(x,y):
             if y > 0:
                 temp = pow(x, y//2)
                 return x * temp * temp
-            else:
-                temp = pow(x, y//2)
-                return (temp * temp)/x
+            return (temp * temp)/x
 
 def efficient_solve_quadratic(coeffs, x):
     global count
