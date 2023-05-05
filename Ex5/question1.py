@@ -17,7 +17,8 @@ import random
 def bubblesort(seq, reverse=False):
     """This function sorts the given sequence and returns a new sorted sequence based on bubble sorting.
 
-    Args: seq (Iterable): Sequence to be sorted reverse (bool, optional): It should be set as True if the sequence is
+    Args: seq (Iterable): Sequence to be sorted
+        reverse (bool, optional): It should be set as True if the sequence is
     to be sorted in descending order. Defaults to False.
 
     Returns:
