@@ -44,23 +44,26 @@ def worstcasecomplexity(size):
 
 
 if __name__ == "__main__":
+    f = open("merge-sort-comp.txt", "w")
     sizes = [1, 10, 50, 100, 500, 1000, 5000, 10000]
     for size in sizes:
         count = 0
         myseq = [random.randint(-10000, 10000) for _ in range(size)]
         mergesort(myseq)
-        print("="*50)
-        print(f"Size: {size} \nNumber of comparisons: {count}")
-        print("="*50)
+        print("="*50, file = f)
+        print(f"Size: {size} \nNumber of comparisons: {count}", file = f)
+        print("="*50, file = f)
 
     count = 0
     bestcasecomplexity(10)
-    print("="*50)
-    print(f"Best Case - Size: {10} \nNumber of comparisons: {count}")
-    print("="*50)
+    print("="*50, file = f)
+    print(f"Best Case - Size: {10} \nNumber of comparisons: {count}", file = f)
+    print("="*50, file = f)
 
     count = 0
     worstcasecomplexity(10)
-    print("="*50)
-    print(f"Worst Case - Size: {10} \nNumber of comparisons: {count}")
-    print("="*50)
+    print("="*50, file = f)
+    print(f"Worst Case - Size: {10} \nNumber of comparisons: {count}", file = f)
+    print("="*50, file = f)
+
+    f.close()
