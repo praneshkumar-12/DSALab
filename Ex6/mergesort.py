@@ -17,3 +17,11 @@ def merge(seq1, seq2):
         result.append(seq2[j])
         j += 1
     return result
+
+def mergesort(seq):
+    length = len(seq)
+    if (length < 2):
+        return (seq[:])
+    else:
+        mid = length // 2
+        return merge(mergesort(seq[:mid]), mergesort(seq[mid:]))
