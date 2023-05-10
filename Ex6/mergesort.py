@@ -25,3 +25,12 @@ def mergesort(seq):
     else:
         mid = length // 2
         return merge(mergesort(seq[:mid]), mergesort(seq[mid:]))
+
+if __name__ == "__main__":
+    import random
+    sizes = [1, 10, 50, 100, 500, 1000, 5000, 10000]
+    for size in sizes:
+        myseq = [random.randint(-10000, 10000) for _ in range(size)]
+        print(myseq)
+        print(mergesort(myseq))
+        print("="*50)
