@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     size = 10
     myseq = [random.randint(-10000, 10000) for _ in range(size)]
-    mergesort(myseq)
     search = random.choice(myseq)
     print(search)
-    print(binarysearch(sorted(myseq), 0, size, search))
+    print(mergesort(myseq))
+    print(binarysearch(mergesort(myseq), 0, size, search))
