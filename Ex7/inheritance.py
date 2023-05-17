@@ -6,6 +6,8 @@ Original Author: Pranesh Kumar
 Created on: 17 May 2023
 
 """
+
+# importing module for displaying the bill
 import tabulate
 
 
