@@ -299,8 +299,11 @@ if __name__ == "__main__":
                                        my_color)
             my_items.append(prod_obj)
             pr.add_items(prod_obj)
-        else:
+        elif ch == "4":
             break
+        else:
+            print("Try again!")
+            continue
 
     items_dict = pr.get_items()
 
