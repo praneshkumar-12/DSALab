@@ -6,6 +6,7 @@ Original Author: Pranesh Kumar
 Created on: 17 May 2023
 
 """
+import tabulate
 
 
 class Product:
@@ -86,7 +87,7 @@ class Product:
         return self.items_dict
 
     def __add__(self, other):
-        return self.get_name() + "-" + other.get_name, self.calculate_total_price() + other.calculate_total_price
+        return self.get_name() + "-" + other.get_name(), self.calculate_total_price() + other.calculate_total_price()
 
 
 class ElectronicProduct(Product):
@@ -149,18 +150,18 @@ class ElectronicProduct(Product):
         return self.brand
 
     def __add__(self, other):
-        return self.get_name() + "-" + other.get_name, self.calculate_total_price() + other.calculate_total_price
+        return self.get_name() + "-" + other.get_name(), self.calculate_total_price() + other.calculate_total_price()
 
 
 class ClothingProduct(Product):
-    def __init__(self, name: str, price: float, quantity: float, size: int, color: str):
+    def __init__(self, name: str, price: float, quantity: float, size: str, color: str):
         """
         Constructor of ElectronicProduct Class
         Args:
             name (str): name of the product
             price (float): price of the product
             quantity (float): quantity of the product
-            size(int): size of the product
+            size(str): size of the product
             color(str): color of the product
         """
         super().__init__(name, price, quantity)
@@ -212,7 +213,7 @@ class ClothingProduct(Product):
         return self.color
 
     def __add__(self, other):
-        return self.get_name() + "-" + other.get_name, self.calculate_total_price() + other.calculate_total_price
+        return self.get_name() + "-" + other.get_name(), self.calculate_total_price() + other.calculate_total_price()
 
 
 # driver code
@@ -292,7 +293,7 @@ if __name__ == "__main__":
             prod_name = input("Enter product name: ")
             cost = float(input("Enter the price: "))
             qty = float(input("Enter the quantity: "))
-            my_size = int(input("Enter the size: "))
+            my_size = input("Enter the size: ")
             my_color = input("Enter the color: ")
             prod_obj = ClothingProduct(clothing_products[prod_ch - 1][3:] + "-" + prod_name, cost, qty, my_size,
                                        my_color)
@@ -306,7 +307,20 @@ if __name__ == "__main__":
     header = ["Name", "Price", "Quantity", "Total Price", "Brand", "Model", "Size", "Color"]
 
     values = []
-    # TODO: complete the tabulation, nothing else
 
-    for item in my_items:
-        item.display_information()
+    for key, value in items_dict.items():
+        temp = [key]
+        temp.extend(value.values())
+        if key.split("-")[0] in str(clothing_products):
+            temp.extend(value.values())
+            temp.insert(4, "")
+            temp.insert(5, "")
+        values.append(temp)
+    print(tabulate.tabulate(values, header))
+
+    combo_ch = input("Do you want a combo of 2 products? (Y/N): ")
+    if combo_ch.lower() == "y":
+        for idx, item in enumerate(my_items):
+            print(idx+1, "-", item.get_name())
+        combo_prods = list(map(int, input("Enter the 2 choices for combo: ").split(" ")))
+        print(my_items[combo_prods[0]-1] + my_items[combo_prods[1] - 1])
