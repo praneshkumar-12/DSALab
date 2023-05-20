@@ -48,25 +48,17 @@ def partition(seq, begin, end):
     global count
     find_median(begin, end, seq)
     pivot = seq[end]
-    i = begin
-    j = end - 1
-    while i <= j:
+    i = begin - 1
+    for j in range(begin, end):
         count += 1
-        count += 2
-        while seq[i] < pivot and i <= end:
+        if seq[j] <= pivot:
             i += 1
-        count += 2
-        while seq[j] > pivot and j >= begin:
-            j -= 1
-        count += 1
-        if i < j:
+
             seq[i], seq[j] = seq[j], seq[i]
-            i += 1
-            j -= 1
-    count += 1
-    if i < end:
-        seq[i], seq[end] = seq[end], seq[i]
-    return i
+
+    seq[i+1], seq[end] = seq[end], seq[i+1]
+
+    return i+1
 
 
 def find_median(begin, end, seq):
@@ -97,9 +89,11 @@ def find_median(begin, end, seq):
 
 # driver code
 if __name__ == "__main__":
-    size = int(input("Enter the size of list: "))
-    my_seq = [random.randint(-10000, 10000) for _ in range(size)]
-    qsort(my_seq, 0, size)
-    print(my_seq)
-
-    print(size, count)
+    sizes = [1, 10, 50, 100, 500, 1000, 5000, 10000]
+    for size in sizes:
+        # size = int(input("Enter the size of list: "))
+        my_seq = [random.randint(-10000, 10000) for _ in range(size)]
+        qsort(my_seq, 0, size)
+        print(my_seq)
+        print(size, count)
+        count = 0
