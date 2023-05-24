@@ -10,4 +10,5 @@ if __name__ == "__main__":
         for _ in range(number_of_elements_to_append):
             d1.append(None)
         stop = default_timer()
-        print(f"Size: {number_of_elements_to_append}; Time taken: {(stop - start) / number_of_elements_to_append} Original time: {stop-start}")
+        print(f"Size: {number_of_elements_to_append}; Time taken: {(stop - start) / number_of_elements_to_append}"
+              f"Original time: {stop-start}")
