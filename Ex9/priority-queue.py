@@ -1,4 +1,5 @@
 import ctypes
+import random
 
 
 class EmptyQueueError(Exception):
@@ -44,7 +45,7 @@ class PQueue:
             if len(self.lp_queue) == 0:
                 return True
             else:
-                return  self.check_all_dash(1)
+                return self.check_all_dash(1)
 
     def check_all_dash(self, queue_num):
         if queue_num == 0:
@@ -118,17 +119,17 @@ class PQueue:
             return del_elt
 
 
-q = PQueue(2, 2)
-import random
+if __name__ == "__main__":
+    q = PQueue(2, 2)
 
-times = 50
+    times = 50
 
-for _ in range(times):
-    queue_n = random.randint(0, 1)
-    val = random.randint(0, 100)
-    q.enqueue(queue_n, val)
-    print(q)
+    for _ in range(times):
+        queue_n = random.randint(0, 1)
+        val = random.randint(0, 100)
+        q.enqueue(queue_n, val)
+        print(q)
 
-for _ in range(times):
-    q.dequeue()
-    print(q)
+    for _ in range(times):
+        q.dequeue()
+        print(q)
