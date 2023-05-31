@@ -78,10 +78,6 @@ class StackWrapper:
         return self.stack[-1]
 
 
-class EmptyQueueError(Exception):
-    pass
-
-
 class QueueWrapper:
     def __init__(self):
         """Initialize an empty queue."""
@@ -144,18 +140,3 @@ class QueueWrapper:
         if self.is_empty():
             raise EmptyQueueError("Queue is empty!")
         return self.queue[0]
-
-
-q = QueueWrapper()
-print(q)
-q.enqueue(50)
-print(q)
-import random
-
-for _ in range(10):
-    q.enqueue(random.randint(0, 100))
-    print(q)
-print(q)
-for _ in range(11):
-    q.dequeue()
-    print(q)
