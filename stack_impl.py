@@ -20,7 +20,7 @@ class Stack:
         self.cap = size
         self.stack = self._make_array(size)
 
-    def _make_array(self, size):
+    def make_array(self, size):
         """
         Create and return a new array of the given size.
 
