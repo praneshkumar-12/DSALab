@@ -71,20 +71,22 @@ class TwoWayStack:
         return string
 
 
-tws = TwoWayStack(10)
-import random
+if __name__ == "__main__":
+    import random
 
-for _ in range(10):
-    stack_n = random.randint(0, 1)
-    num = random.randint(0, 100)
-    tws.push(stack_n, num)
-    print(tws)
+    tws = TwoWayStack(10)
 
-while True:
-    stack_n = random.randint(0, 1)
-    if tws.is_empty(stack_n):
-        continue
-    tws.pop(stack_n)
-    print(tws)
-    if tws.is_empty(0) and tws.is_empty(1):
-        break
+    for _ in range(10):
+        stack_n = random.randint(0, 1)
+        num = random.randint(0, 100)
+        tws.push(stack_n, num)
+        print(tws)
+
+    while True:
+        stack_n = random.randint(0, 1)
+        if tws.is_empty(stack_n):
+            continue
+        tws.pop(stack_n)
+        print(tws)
+        if tws.is_empty(0) and tws.is_empty(1):
+            break
