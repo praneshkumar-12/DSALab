@@ -121,7 +121,7 @@ class PQueue:
 q = PQueue(2, 2)
 import random
 
-times = 5000
+times = 50
 
 for _ in range(times):
     queue_n = random.randint(0, 1)
