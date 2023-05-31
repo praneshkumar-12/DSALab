@@ -113,6 +113,20 @@ class Stack:
         stack_as_string += ">"
         return stack_as_string
 
+    def resize(self, size):
+        """
+            Resizes the dynamic array to the specified size.
+
+            Args:
+                size: The new size of the array.
+
+        """
+        new_array = self.make_array(size)
+        for i in range(self.top):
+            new_array[i] = self.stack[i]
+        self.stack = new_array
+        self.cap = size
+
     def __getitem__(self, idx):
         """
         Get the element at the given index in the stack.
