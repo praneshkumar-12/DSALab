@@ -140,3 +140,30 @@ class QueueWrapper:
         if self.is_empty():
             raise EmptyQueueError("Queue is empty!")
         return self.queue[0]
+
+
+# driver code
+if __name__ == "__main__":
+    n = int(input("Enter a number to check if it is a palindrome: "))
+    if n < 0:
+        print("Enter only positive numbers")
+        exit()
+    stack = StackWrapper()
+    queue = QueueWrapper()
+    temp = n
+    while temp != 0:
+        rem = temp % 10
+        stack.push(rem)
+        queue.enqueue(rem)
+        temp //= 10
+
+    while True:
+        stack_elt = stack.pop()
+        queue_elt = queue.dequeue()
+        if stack_elt != queue_elt:
+            print("The given number is not a palindrome")
+            break
+
+        if stack.is_empty() and queue.is_empty():
+            print("The given number is a palindrome")
+            break
