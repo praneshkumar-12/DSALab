@@ -53,7 +53,7 @@ class Stack:
 
         """
         if self.top == self.cap:
-            self._resize(2 * self.cap)
+            self.resize(2 * self.cap)
         self.stack[self.top] = elt
         self.top += 1
 
@@ -74,7 +74,7 @@ class Stack:
         self.stack[self.top - 1] = None
         self.top -= 1
         if self.top < (self.cap // 4):
-            self._resize(self.cap // 2)
+            self.resize(self.cap // 2)
         return del_item
 
     def __len__(self):
