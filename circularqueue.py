@@ -37,16 +37,6 @@ class CircularQueue:
             del_item = self.queue[self.front]
             self.front = self.next(self.front)
 
-    def __str__(self):
-        # return str(self.queue)
-        circular_queue_as_string = "CQ:["
-        # for i in self.queue._objectsvalue:
-        #     circular_queue_as_string += str(i) + ","
-        # return circular_queue_as_string + "]"
-
-        for idx in range(self.front, self.rear):
-            circular_queue_as_string += str(self.queue._objects[str(idx)]) + ","
-        return circular_queue_as_string + "]"
 
 cq = CircularQueue(5)
 cq.enqueue(5)
