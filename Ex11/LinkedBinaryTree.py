@@ -3,40 +3,60 @@ from AbstractBinaryTree import AbstractBinaryTree
 
 class LinkedBinaryTree(AbstractBinaryTree):
     class BTNode:
+        """A node class for the LinkedBinaryTree."""
         __slots__ = ["item", "left", "right", "parent"]
 
         def __init__(self, item, left=None, right=None, parent=None):
+            """
+            Initialize a new BTNode.
+
+            Args:
+                item: The item stored in the node.
+                left: The left child node.
+                right: The right child node.
+                parent: The parent node.
+            """
             self.item = item
             self.left = left
             self.right = right
             self.parent = parent
 
         def getitem(self):
+            """Return the item stored in the node."""
             return self.item
 
         def setitem(self, item):
+            """Set the item stored in the node."""
             self.item = item
 
     __slots__ = ["root", "size"]
 
     def __init__(self, item=None, t_left=None, t_right=None):
-        self.root = None
-        self.size = 0
-        self.string = ""
+        """
+        Initialize a new LinkedBinaryTree.
+
+        Args:
+            item: The item to be stored in the root node.
+            t_left: Another LinkedBinaryTree to be used as the left subtree.
+            t_right: Another LinkedBinaryTree to be used as the right subtree.
+        """
+        self.root = None  # Initialize the root node
+        self.size = 0  # Initialize the size of the tree
+        self.string = ""  # Initialize an empty string
         if item is not None:
-            self.root = self.addRoot(item)
+            self.root = self.addRoot(item)  # Create the root node with the given item
         if t_left is not None:
             if t_left.root is not None:
-                t_left.root.parent = self.root
-                self.root.left = t_left.root
-                self.size += t_left.size
-                t_left.root = None
+                t_left.root.parent = self.root  # Set the parent of the left subtree to the root
+                self.root.left = t_left.root  # Set the left subtree of the root
+                self.size += t_left.size  # Update the size of the tree
+                t_left.root = None  # Clear the root of the left subtree
         if t_right is not None:
             if t_right.root is not None:
-                t_right.root.parent = self.root
-                self.root.right = t_right.root
-                self.size += t_right.size
-                t_right.root = None
+                t_right.root.parent = self.root  # Set the parent of the right subtree to the root
+                self.root.right = t_right.root  # Set the right subtree of the root
+                self.size += t_right.size  # Update the size of the tree
+                t_right.root = None  # Clear the root of the right subtree
 
     def addRoot(self, item):
         """
@@ -264,6 +284,12 @@ class LinkedBinaryTree(AbstractBinaryTree):
         return mirror_node
 
     def mirror(self):
+        """
+        Create a new LinkedBinaryTree representing the mirror image of the original tree.
+
+        Returns:
+            A new LinkedBinaryTree that is the mirror image of the original tree.
+        """
         mirrored_tree = LinkedBinaryTree()
         mirrored_tree.root = mirrored_tree.makeMirror(self.getRoot())
         return mirrored_tree
