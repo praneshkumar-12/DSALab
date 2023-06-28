@@ -19,11 +19,10 @@ class LinkedBinaryTree(AbstractBinaryTree):
 
     __slots__ = ["root", "size"]
 
-    def __init__(self, item=None, t_left=None, t_right=None, parent=None):
+    def __init__(self, item=None, t_left=None, t_right=None):
         self.root = None
         self.size = 0
         self.string = ""
-        self.parent = parent
         if item is not None:
             self.root = self.addRoot(item)
         if t_left is not None:
@@ -100,17 +99,17 @@ class LinkedBinaryTree(AbstractBinaryTree):
 
     def postorder(self, pos):
         if pos.left is not None:
-            self.preorder(pos.left)
+            self.postorder(pos.left)
         if pos.right is not None:
-            self.preorder(pos.right)
+            self.postorder(pos.right)
         self.string += str(pos.item) + ","
 
     def inorder(self, pos):
         if pos.left is not None:
-            self.preorder(pos.left)
+            self.inorder(pos.left)
         self.string += str(pos.item) + ","
         if pos.right is not None:
-            self.preorder(pos.right)
+            self.inorder(pos.right)
 
     def __str__(self):
         self.string = "Preorder: "
