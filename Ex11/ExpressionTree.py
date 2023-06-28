@@ -6,6 +6,15 @@ class ExpressionTree(LinkedBinaryTree):
         super().__init__(item, t_left, t_right)
 
     def construct(self, string):
+        """
+        Constructs an expression tree from a postfix expression string.
+
+        Args:
+            string: A string representing a postfix expression.
+
+        Returns:
+            The root position of the constructed expression tree.
+        """
         s = []
         for ch in string:
             if ch in "+-*/":

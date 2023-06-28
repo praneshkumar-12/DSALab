@@ -1,10 +1,14 @@
 import ctypes
 
+
 class EmptyCircularQueueError(Exception):
     pass
 
+
 class FullCircularQueueError(Exception):
     pass
+
+
 class CircularQueue:
     def __init__(self, cap):
         self.cap = cap
@@ -18,7 +22,7 @@ class CircularQueue:
         return (pos + 1) % self.cap
 
     def is_empty(self):
-        return self.front ==  self.rear
+        return self.front == self.rear
 
     def is_full(self):
         return self.front == self.next(self.rear)
