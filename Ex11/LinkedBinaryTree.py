@@ -257,39 +257,16 @@ class LinkedBinaryTree(AbstractBinaryTree):
         self.string += "|"
         return self.string
 
-    def makeMirror(self, pos=None):
-        """
-        Constructs a new binary tree representing the mirror image of the original tree.
-
-        Args:
-            pos: The position to start the mirror operation. If None, starts from the root.
-
-        Returns:
-            The root position of the new mirror tree.
-        """
-        if pos is None:
-            pos = self.root
-
-        if pos is None:
-            return None
-
-        # Create a new node with the same item
-        mirror_node = self.BTNode(pos.item)
-
-        # Construct the mirror image of the left and right subtrees and assign them as right and left children,
-        # respectively
-        mirror_node.right = self.makeMirror(pos.left)
-        mirror_node.left = self.makeMirror(pos.right)
-
-        return mirror_node
-
-    def mirror(self):
+    def mirror(self, pos):
         """
         Create a new LinkedBinaryTree representing the mirror image of the original tree.
 
         Returns:
             A new LinkedBinaryTree that is the mirror image of the original tree.
         """
-        mirrored_tree = LinkedBinaryTree()
-        mirrored_tree.root = mirrored_tree.makeMirror(self.getRoot())
-        return mirrored_tree
+        if self.isLeaf(pos):
+            return None
+        if pos is not None:
+            pos.left, pos.right = pos.right, pos.left
+            self.mirror(pos.left)
+            self.mirror(pos.right)

@@ -30,6 +30,5 @@ class ExpressionTree(LinkedBinaryTree):
 
 if __name__ == "__main__":
     E = ExpressionTree()
-    E.construct("ab-c/f*d+")  # ab+a*cd-e+/afg-*h+-
+    E.construct("ab+a*cd-e+/afg-*h+-")
     print(E)
-    print(E.mirror())

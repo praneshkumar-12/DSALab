@@ -80,7 +80,6 @@ class BinarySearchTree(LinkedBinaryTree):
             
 
 if __name__ == "__main__":
-    import random
     bst = BinarySearchTree()
     bst.insert(38)
     bst.insert(90)
@@ -100,8 +99,7 @@ if __name__ == "__main__":
     print(bst.string)
     print(bst.findmax().item)
     print(bst.findmin().item)
-    bst.delete(88)
-    
+
     print(bst)
     bst.string = ""
     bst.inorder(bst.root)
