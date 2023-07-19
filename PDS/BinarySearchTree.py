@@ -53,41 +53,64 @@ class BinarySearchTree(LinkedBinaryTree):
         if pos.right is None:
             return pos
         
-    def delete(self, ele, pos=None):
-        if pos == None:
-            pos = self.getRoot()
+    def delete(self, item, position=None):
+        # If position is not provided, start the search from the root
+        if position is None:
+            position = self.root
 
-        if ele < pos.item:
-            self.delete(ele, self.left(pos))
-        elif ele > pos.item:
-            self.delete(ele, self.right(pos))
+        # Search for the position of the item to be deleted
+        pos = self.search(item, position)
+        if pos is None:
+            raise ValueError("No such element in Tree")
+
+        parent = pos.parent
+
+        if pos.left is None and pos.right is None:
+            # Case 1: Deleting a leaf node
+            if parent is None:
+                # If the node is the root and has no children
+                self.root = None
+            elif parent.left == pos:
+                # If the node is the left child of its parent
+                parent.left = None
+            else:
+                # If the node is the right child of its parent
+                parent.right = None
+        elif pos.left is not None and pos.right is None:
+            # Case 2: Deleting a node with only a left child
+            if parent is None:
+                # If the node is the root and has only a left child
+                self.root = pos.left
+                self.root.parent = None
+            elif parent.left == pos:
+                # If the node is the left child of its parent
+                parent.left = pos.left
+                pos.left.parent = parent
+            else:
+                # If the node is the right child of its parent
+                parent.right = pos.left
+                pos.left.parent = parent
+        elif pos.left is None and pos.right is not None:
+            # Case 3: Deleting a node with only a right child
+            if parent is None:
+                # If the node is the root and has only a right child
+                self.root = pos.right
+                self.root.parent = None
+            elif parent.left == pos:
+                # If the node is the left child of its parent
+                parent.left = pos.right
+                pos.right.parent = parent
+            else:
+                # If the node is the right child of its parent
+                parent.right = pos.right
+                pos.right.parent = parent
         else:
-            if self.isLeaf(pos):  # no child
-                if pos == self.getRoot():
-                    self.root = None
-                else:
-                    parent = self.getParent(pos)
-                    if self.left(parent) == pos:
-                        parent.left = None
-                    else:
-                        parent.right = None
-            elif self.left(pos) is None or self.right(pos) is None: # one child
-                if self.left(pos) is None:
-                    child = self.right(pos)
-                else:
-                    child = self.left(pos)
-                if pos == self.getRoot():
-                    self.root = child
-                else:
-                    parent = self.getParent(pos)
-                    if self.left(parent) == pos:
-                        parent.left = child
-                    else:
-                        parent.right = child
-            else:  
-                min_node = self.findmin(pos.right)
-                pos.item = min_node.item
-                self.delete(min_node.item, pos.right)
+            # Case 4: Deleting a node with both left and right children
+            smallest_node = self.findmin(pos.right)  # Find the smallest node in the right subtree
+            pos.item = smallest_node.item  # Replace the item of the node to be deleted with the smallest node's item
+            self.delete(smallest_node.item, pos.right)  # Delete the smallest node recursively
+
+        self.size -= 1  # Update the size of the tree
 
 if __name__ == "__main__":
     bst = BinarySearchTree()
